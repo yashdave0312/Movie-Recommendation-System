@@ -70,7 +70,32 @@ The system may recommend movies such as:
 
 The recommendations are based on similarities in the movie's available textual features.
 
+## Run locally
+
+Install the dependencies and add `OMDB_API_KEY=your_activated_key` to the
+project-root `.env` file (`.env.example` shows the setting). Keep `.env` private
+and never commit or share it. If you have shared a key publicly, revoke it and
+use a new one.
+OMDb provides search and movie details, but no trending or genre-discovery
+endpoint; the home catalog and content-based recommendations therefore use the
+included local dataset.
+
+The app uses a FastAPI backend and a Streamlit frontend. Start each in a
+separate terminal from the project root:
+
+```powershell
+python -m pip install -r requirements.txt
+uvicorn api:app --host 127.0.0.1 --port 8001
 ```
+
+In a second terminal:
+
+```powershell
+streamlit run app.py
+```
+
+The pandas and scikit-learn minimum versions match the versions used to create
+the committed model pickle files.
 
 ## 🚀 Future Improvements
 
